@@ -1,6 +1,7 @@
 .page {
     display: flex;
+    flex-direction: column;
     color: white;
-    width: 1280px;
-    border: tan solid;
+    width: 880px;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
