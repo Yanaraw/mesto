@@ -1,0 +1,13 @@
+.popup__text {
+    display: flex;
+    flex-direction: column;
+    font-family: Inter;
+    width: 358px;
+    margin: auto;
+}
+
+@media screen and (max-width: 552px){
+    .popup__text {
+        width: 238px;
+    }
+  } 

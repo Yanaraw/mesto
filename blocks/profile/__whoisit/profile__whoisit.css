@@ -4,3 +4,13 @@
     line-height: 22px;
     margin-top: 7px;
 }
+
+
+@media screen and (max-width: 657px){
+    .profile__whoisit {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+    }
+  }

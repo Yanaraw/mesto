@@ -3,5 +3,6 @@
     flex-direction: column;
     color: white;
     width: 880px;
+    min-width: 320px;
     font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
