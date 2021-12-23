@@ -5,7 +5,8 @@
 
 @media screen and (max-width: 657px){
     .profile__info {
-        margin: 15px 0 20px 0;
+        margin: 25px 0 20px 0;
         justify-items: end;
+        padding-left: 30px;
     }
   }

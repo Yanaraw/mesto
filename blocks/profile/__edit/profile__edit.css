@@ -19,8 +19,8 @@
 @media screen and (max-width: 657px){
     .profile__edit {
         background-size: 7.5px;
-        height: 7.5px;
-        padding: 9px;
-        margin: 8px;
+        padding: 8px;
+        margin: 10px;
+        margin-left: 14px;
     }
   }

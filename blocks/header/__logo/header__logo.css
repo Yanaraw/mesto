@@ -3,7 +3,8 @@
     background-repeat: no-repeat;
     width: 142px;
     height: 33px;
-    padding-bottom: 41px;  
+    padding-bottom: 41px; 
+    background-size: contain; 
 }
 
 @media screen and (max-width: 416px){

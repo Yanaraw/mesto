@@ -4,6 +4,8 @@
     background-position: center;
     padding: 24px 74px;
     border: white solid 2px;
+    background-color: black;
+    border-radius: 2px;
     align-self: center;
 }
 
@@ -14,7 +16,8 @@
 
 @media screen and (max-width: 657px){
     .profile__add-button {
-        width: 47%;
-        height: 16px;
+        padding-left: 43%;
+        padding-right: 43%;
+        background-size: 16px;
     }
   }

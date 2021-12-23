@@ -12,7 +12,6 @@ function togglePopup() {
     popup.classList.toggle('popup_opened');
     newName.value= namee.textContent;
     newAbout.value=about.textContent;
-    console.log(namee.textContent);
 }   
 
 function closePopupOnOverlayClik(event) {

@@ -1,7 +1,7 @@
 .popup__text {
     display: flex;
     flex-direction: column;
-    font-family: Inter;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     width: 358px;
     margin: auto;
 }
