@@ -1,7 +1,7 @@
 const popupOpenButton = document.querySelector('.profile__edit');
 const popupCloseButton = document.querySelector('.popup__close');
 const popup = document.querySelector('.popup');
-const saveButton = document.querySelector('.popup__save');
+const editForm = document.querySelector('.popup__save');
 let namee = document.getElementById('name');
 let about = document.getElementById('about');
 
@@ -21,14 +21,16 @@ function closePopupOnOverlayClik(event) {
 }
 
 function save(event) {
+    event.preventDefault();
     about.textContent = newAbout.value;
     namee.textContent = newName.value;
     if (event.currentTarget === event.target) {
         popup.classList.remove('popup_opened')
     }
+    
 }
 
 popupOpenButton.addEventListener('click', togglePopup);
 popupCloseButton.addEventListener('click', togglePopup);
 popup.addEventListener('click', closePopupOnOverlayClik);
-saveButton.addEventListener('click', save);
+editForm.addEventListener('submit', save);
