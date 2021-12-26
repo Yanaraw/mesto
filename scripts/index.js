@@ -33,4 +33,4 @@ function save(event) {
 popupOpenButton.addEventListener('click', togglePopup);
 popupCloseButton.addEventListener('click', togglePopup);
 popup.addEventListener('click', closePopupOnOverlayClik);
-editForm.addEventListener('submit', save);
+editForm.addEventListener('click', save);
