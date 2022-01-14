@@ -1,4 +1,4 @@
-.popup__save {
+.popup__action {
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
@@ -11,13 +11,13 @@
     cursor: pointer;
 }
 
-.popup__save:hover {
+.popup__action:hover {
     opacity: 0.8;
     transition: 0.3s;
 }
 
 @media screen and (max-width: 552px){
-    .popup__save {
+    .popup__action {
         font-size: 14px;
         line-height: 17px;
         margin-top: 42px;
