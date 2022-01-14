@@ -81,7 +81,7 @@ function likeHandler(e) {
 }
 
 const popupOpenImage = document.querySelector('.image-popup');
-const closeCrossImg = document.querySelector('.img-popup__close');
+const closeCrossImg = document.querySelector('.popup__img-popup-close');
 
 /* Функция открывает картинку */
 function openImage(e) {
