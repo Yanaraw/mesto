@@ -1,4 +1,4 @@
-.profile-popup_opened {
+.popup_opened {
     display: flex;
     visibility: visible;
     opacity: 1;
