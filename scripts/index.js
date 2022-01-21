@@ -15,7 +15,7 @@ function togglePopup(modalWindow) {                    /* функция отв�
 
 function closePopupOnOverlayClick(event, modalWindow) {
     if (event.currentTarget === event.target) {
-        modalWindow.classList.remove('popup_opened')
+        togglePopup(modalWindow)
     }
 }
 
@@ -28,14 +28,14 @@ function handleSaveButton(event) {
     }
 }
 
-function editOpen () {
+function handleProfileForm () {
     togglePopup(popupProfile)
     newName.value= namee.textContent;
     newAbout.value=about.textContent;
 }
 
-popupOpenButton.addEventListener('click', editOpen);
-popupCloseButton.addEventListener('click', editOpen);
+popupOpenButton.addEventListener('click', handleProfileForm);
+popupCloseButton.addEventListener('click', handleProfileForm);
 popupProfile.addEventListener('click', () => closePopupOnOverlayClick(event, popupProfile));
 editForm.addEventListener('submit', handleSaveButton);
 
@@ -48,7 +48,7 @@ initialCards.forEach((element) => {
 })
 
 /* Функция удаляет карточку */
-function deleteHandler(e) {
+function handleDeleteButton(e) {
     e.target.closest(".elements__card").remove()
 }
 
@@ -70,15 +70,14 @@ function createNewCard(element) {
     const likeButton = elements.querySelector('.elements__like');
     const imageButton = elements.querySelector('.elements__img');
 
-    deleteButton.addEventListener('click', deleteHandler)
+    deleteButton.addEventListener('click', handleDeleteButton)
     likeButton.addEventListener('click', handleLikeButton)
     imageButton.addEventListener('click', openImage)
 
     function openImage(e) {
-        popupOpenImage.classList.toggle("popup_opened");
+        togglePopup(popupOpenImage)
         document.querySelector('.popup__image').src = e.target.src
         document.querySelector('.popup__img-figcaption').textContent = element.name
-        
     }
 };
 
@@ -94,11 +93,11 @@ const popupInputPic = document.querySelector('.popup__input-pic');
 function createNewElement(event) {
     event.preventDefault();
     togglePopup(elementsPopup) 
-    obj = [{
+    const card = {
         name: popupInputName.value,
         link: popupInputPic.value
-    }]
-    createNewCard(obj[0])
+    }
+    createNewCard(card)
 
     popupInputName.value = '';
     popupInputPic.value = '';
