@@ -24,7 +24,7 @@ function handleSaveButton(event) {
     about.textContent = newAbout.value;
     namee.textContent = newName.value;
     if (event.currentTarget === event.target) {
-        popupProfile.classList.remove('popup_opened')
+        togglePopup(popupProfile)
     }
 }
 
