@@ -44,7 +44,7 @@ function enableValidation({formsSelector, inputSelector, submitButtonsSelector, 
         const inputs = form.querySelectorAll(inputSelector);
         const button = form.querySelector(submitButtonsSelector);
         const button_new_photo = document.querySelector(submitButtonsSelectorNewPhoto);
-        checkButtonValidity(form, button_new_photo)
+        checkButtonValidity(form, button_new_photo, inactiveButtonClass)
     
         inputs.forEach(input => {
             input.addEventListener('input', () => {
