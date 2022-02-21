@@ -9,6 +9,10 @@
     margin: 48px 0 37px 0;
     padding: 14px 0 18px 0;
     cursor: pointer;
+    position: absolute;
+    top: 200px;
+    right: 35px;
+    width: 365px;
 }
 
 .popup__action:hover {

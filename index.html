@@ -35,20 +35,32 @@
   <section class="popup profile-popup">
     <div class="popup__container">
         <form class="popup__text profile-popup__text"  name="popup-name">
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <input type="text" class="popup__input" id="new_name">
-            <input type="text" class=" popup__input" id="new_about">
-            <button class="popup__action profile-popup__action" type="submit">Сохранить</button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <div class="popup__input-container">
+            <input id = "username" minlength="2" maxlength="40" required type="text" class="popup__input">
+            <span id = "error-username" class="popup__error-message popup__error-message_visible"></span>
+          </div>
+          <div class="popup__input-container">
+            <input id="user_description" minlength="2" maxlength="200" required type="text" class=" popup__input" >
+            <span id = "error-user_description" class="popup__error-message popup__error-message_visible"></span>
+          </div>
+          <button class="popup__action profile-popup__action" type="submit">Сохранить</button>
         </form>
       <button class="popup__close profile-popup__close" type="button"></button>
     </div> 
   </section>
   <section class="popup elements-popup">
     <div class="popup__container">
-      <form class="popup__text elements-popup__text" name='popup2-name'>
+      <form class="popup__text elements-popup__text" name='popup2-name' novalidate>
         <h2 class="popup__title">Новое место</h2>
-        <input type="text" class="popup__input popup__input-name" placeholder="Название" id="new_pic-name">
-        <input type="text" class=" popup__input popup__input-pic" placeholder="Ссылка на картинку" id="new_pic">
+        <div class="popup__input-container">
+          <input id="photo_name" type="text" minlength="2" maxlength="30" required class="popup__input popup__input-name" placeholder="Название">
+          <span id = "error-photo_name" class="popup__error-message popup__error-message_visible"></span>
+        </div>
+        <div class="popup__input-container">
+          <input id="photo_link" type="url" required class=" popup__input popup__input-pic" placeholder="Ссылка на картинку" >
+          <span id = "error-photo_link" class="popup__error-message popup__error-message_visible"></span>
+        </div>
         <button class="popup__action elements-popup__action" type="submit">Создать</button>
       </form>
       <button class="popup__close elements-popup__close" type="button"></button>
@@ -75,5 +87,6 @@
   </template>
 <script src="./cards.js"></script>
 <script src="./scripts/index.js"></script>
+<script src="./validate.js"></script>
 </body>
 </html>

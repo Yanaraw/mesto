@@ -6,8 +6,8 @@ const actionButton = document.querySelector('.profile-popup__action');
 const editForm = document.querySelector('.profile-popup__text');
 const namee = document.getElementById('name');
 const about = document.getElementById('about');
-const newAbout = document.getElementById('new_about');
-const newName = document.getElementById('new_name');
+const newAbout = document.getElementById('user_description');
+const newName = document.getElementById('username');
 
 function togglePopup(modalWindow) {                    /* функция отвечает за открытие и закрытие кнопки редактирования и обновляет данные*/
     modalWindow.classList.toggle('popup_opened');

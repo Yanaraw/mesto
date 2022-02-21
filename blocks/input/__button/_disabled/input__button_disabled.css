@@ -1,0 +1,6 @@
+.input__button_disabled {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.2);
+    border: rgba(0, 0, 0, 0.2) solid 1px;
+    cursor: default;
+}
