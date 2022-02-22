@@ -1,12 +1,13 @@
 .profile__info {
     display: grid;
     grid-template-columns: 1fr min-content;
+    
 }
 
 @media screen and (max-width: 657px){
     .profile__info {
         margin: 25px 0 20px 0;
-        justify-items: end;
+        justify-items: center;
         padding-left: 30px;
     }
   }

@@ -46,3 +46,4 @@
 @import url(../blocks/popup/__input-container/popup__input-container.css);
 @import url(../blocks/input/__text/_type-error/input__text_type-error.css);
 @import url(../blocks/input/__button/_disabled/input__button_disabled.css);
+@import url(../blocks/elements/__img-container/elements__img-container.css);

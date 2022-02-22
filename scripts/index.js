@@ -35,13 +35,13 @@ function handleProfileForm () {
 }
 
 popupOpenButton.addEventListener('click', handleProfileForm);
-popupCloseButton.addEventListener('click', handleProfileForm);
+popupCloseButton.addEventListener('click', () => togglePopup(popupProfile));
 popupProfile.addEventListener('click', () => closePopupOnOverlayClick(event, popupProfile));
 editForm.addEventListener('submit', handleSaveButton);
 
 /* эта часть кода подгружает картинки */
 const elementsTemplate = document.querySelector(".elements-template").content.querySelector('.elements__card');
-const ListOfCards = document.querySelector('.elements__cards');
+const listOfCards = document.querySelector('.elements__cards');
 
 initialCards.forEach((element) => {
     createNewCard(element)
@@ -60,15 +60,20 @@ function handleLikeButton(e) {
 const popupOpenImage = document.querySelector('.image-popup');
 const closeCrossImg = document.querySelector('.popup__img-popup-close');
 
-function createNewCard(element) {
-    const elements = elementsTemplate.cloneNode(true)
-    elements.querySelector(".elements__img").src = element.link
-    elements.querySelector(".elements__description").textContent = element.name
-    ListOfCards.prepend(elements)
+function renderCard(card, container) {
+    container.prepend(card);
+} 
 
-    const deleteButton = elements.querySelector('.elements__delete-button');
-    const likeButton = elements.querySelector('.elements__like');
-    const imageButton = elements.querySelector('.elements__img');
+function createNewCard(element) {
+    const card = elementsTemplate.cloneNode(true)
+    card.querySelector(".elements__img").src = element.link
+    card.querySelector(".elements__description").textContent = element.name
+
+    renderCard(card, listOfCards)
+
+    const deleteButton = card.querySelector('.elements__delete-button');
+    const likeButton = card.querySelector('.elements__like');
+    const imageButton = card.querySelector('.elements__img');
 
     deleteButton.addEventListener('click', handleDeleteButton)
     likeButton.addEventListener('click', handleLikeButton)
@@ -86,7 +91,7 @@ function createNewCard(element) {
 const popupAddPicButton = document.querySelector(".profile__add-pic-button");
 const popupAddPicClose = document.querySelector(".elements-popup__close");
 const elementsPopup = document.querySelector(".elements-popup");
-const AddCardForm = document.querySelector(".elements-popup__text");
+const addCardForm = document.querySelector(".elements-popup__text");
 const popupInputName = document.querySelector('.popup__input-name');
 const popupInputPic = document.querySelector('.popup__input-pic');
 
@@ -99,6 +104,10 @@ function createNewElement(event) {
     }
     createNewCard(card)
 
+    const button = document.querySelector('.elements-popup__action')
+    button.setAttribute('disabled', '');
+    button.classList.add('input__button_disabled');
+
     popupInputName.value = '';
     popupInputPic.value = '';
 };
@@ -106,6 +115,19 @@ function createNewElement(event) {
 popupAddPicButton.addEventListener('click', () => togglePopup(elementsPopup));
 popupAddPicClose.addEventListener('click', () => togglePopup(elementsPopup));
 elementsPopup.addEventListener('click', () => closePopupOnOverlayClick(event, elementsPopup));
-AddCardForm.addEventListener('submit', createNewElement);
+addCardForm.addEventListener('submit', createNewElement);
 popupOpenImage.addEventListener('click', () => closePopupOnOverlayClick(event, popupOpenImage));
 closeCrossImg.addEventListener('click', () => togglePopup(popupOpenImage))
+
+function closePopup(openedPopup) {
+    openedPopup.classList.remove('popup_opened')
+}
+
+function closeByEsc(evt) {
+    if (evt.key === "Escape") {
+      const openedPopup = document.querySelector('.popup_opened');
+      closePopup(openedPopup); 
+    }
+}
+
+document.addEventListener('keydown',  closeByEsc)
