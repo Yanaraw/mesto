@@ -7,7 +7,6 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    border: red solid 1px;
     max-width: 500px;
     height: 51px;
 }
