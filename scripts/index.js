@@ -11,6 +11,11 @@ const newName = document.getElementById('username');
 
 function togglePopup(modalWindow) {                    /* функция отвечает за открытие и закрытие кнопки редактирования и обновляет данные*/
     modalWindow.classList.toggle('popup_opened');
+    if ([modalWindow.classList.contains('popup_opened')]){
+        document.addEventListener('keydown',  closeByEsc);
+    }else {
+        document.removeEventListener('keydown',  closeByEsc);
+    }
 }   
 
 function closePopupOnOverlayClick(event, modalWindow) {
@@ -44,7 +49,8 @@ const elementsTemplate = document.querySelector(".elements-template").content.qu
 const listOfCards = document.querySelector('.elements__cards');
 
 initialCards.forEach((element) => {
-    createNewCard(element)
+    const newCard = createNewCard(element);
+    renderCard(newCard, listOfCards); 
 })
 
 /* Функция удаляет карточку */
@@ -69,7 +75,7 @@ function createNewCard(element) {
     card.querySelector(".elements__img").src = element.link
     card.querySelector(".elements__description").textContent = element.name
 
-    renderCard(card, listOfCards)
+    
 
     const deleteButton = card.querySelector('.elements__delete-button');
     const likeButton = card.querySelector('.elements__like');
@@ -84,6 +90,7 @@ function createNewCard(element) {
         document.querySelector('.popup__image').src = e.target.src
         document.querySelector('.popup__img-figcaption').textContent = element.name
     }
+    return card
 };
 
 /* эта часть кода относится к блоку добавления новых карточек */
@@ -102,11 +109,13 @@ function createNewElement(event) {
         name: popupInputName.value,
         link: popupInputPic.value
     }
-    createNewCard(card)
+    const newCard = createNewCard(card);
+    renderCard(newCard, listOfCards); 
 
     const button = document.querySelector('.elements-popup__action')
     button.setAttribute('disabled', '');
     button.classList.add('input__button_disabled');
+
 
     popupInputName.value = '';
     popupInputPic.value = '';
@@ -130,4 +139,3 @@ function closeByEsc(evt) {
     }
 }
 
-document.addEventListener('keydown',  closeByEsc)
