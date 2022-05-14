@@ -1,3 +1,9 @@
+
+import {togglePopup} from './utils.js'
+import {FormValidator} from './FormValidator.js'
+import {Card} from './Card.js'
+
+
 /* эта часть кода относится к блоку редактирования информации о пользователе */
 const popupOpenButton = document.querySelector('.profile__edit');
 const popupCloseButton = document.querySelector('.profile-popup__close');
@@ -8,15 +14,6 @@ const namee = document.getElementById('name');
 const about = document.getElementById('about');
 const newAbout = document.getElementById('user_description');
 const newName = document.getElementById('username');
-
-function togglePopup(modalWindow) {                    /* функция отвечает за открытие и закрытие кнопки редактирования и обновляет данные*/
-    modalWindow.classList.toggle('popup_opened');
-    if ([modalWindow.classList.contains('popup_opened')]){
-        document.addEventListener('keydown',  closeByEsc);
-    }else {
-        document.removeEventListener('keydown',  closeByEsc);
-    }
-}   
 
 function closePopupOnOverlayClick(event, modalWindow) {
     if (event.currentTarget === event.target) {
@@ -49,50 +46,17 @@ const elementsTemplate = document.querySelector(".elements-template").content.qu
 const listOfCards = document.querySelector('.elements__cards');
 
 initialCards.forEach((element) => {
-    const newCard = createNewCard(element);
-    renderCard(newCard, listOfCards); 
+    renderCard(element, elementsTemplate); 
 })
-
-/* Функция удаляет карточку */
-function handleDeleteButton(e) {
-    e.target.closest(".elements__card").remove()
-}
-
-/* Функция изменяет кнопку like на черную */
-function handleLikeButton(e) {
-    e.target.classList.toggle('elements__like_active')
-}
 
 const popupOpenImage = document.querySelector('.image-popup');
 const closeCrossImg = document.querySelector('.popup__img-popup-close');
 
-function renderCard(card, container) {
-    container.prepend(card);
-} 
-
-function createNewCard(element) {
-    const card = elementsTemplate.cloneNode(true)
-    card.querySelector(".elements__img").src = element.link
-    card.querySelector(".elements__description").textContent = element.name
-
-    
-
-    const deleteButton = card.querySelector('.elements__delete-button');
-    const likeButton = card.querySelector('.elements__like');
-    const imageButton = card.querySelector('.elements__img');
-
-    deleteButton.addEventListener('click', handleDeleteButton)
-    likeButton.addEventListener('click', handleLikeButton)
-    imageButton.addEventListener('click', openImage)
-
-    function openImage(e) {
-        togglePopup(popupOpenImage)
-        document.querySelector('.popup__image').src = e.target.src
-        document.querySelector('.popup__img-figcaption').textContent = element.name
-    }
-    return card
-};
-
+function renderCard(cardd, container) {
+    const card = new Card (cardd, '.elements-template')
+    const cardElement = card.createNewCard()
+    container.prepend(cardElement);
+}
 /* эта часть кода относится к блоку добавления новых карточек */
 
 const popupAddPicButton = document.querySelector(".profile__add-pic-button");
@@ -105,11 +69,11 @@ const popupInputPic = document.querySelector('.popup__input-pic');
 function createNewElement(event) {
     event.preventDefault();
     togglePopup(elementsPopup) 
-    const card = {
+    const cardN = {
         name: popupInputName.value,
         link: popupInputPic.value
     }
-    const newCard = createNewCard(card);
+    const newCard = createNewCard(cardN);
     renderCard(newCard, listOfCards); 
 
     const button = document.querySelector('.elements-popup__action')
@@ -128,14 +92,16 @@ addCardForm.addEventListener('submit', createNewElement);
 popupOpenImage.addEventListener('click', () => closePopupOnOverlayClick(event, popupOpenImage));
 closeCrossImg.addEventListener('click', () => togglePopup(popupOpenImage))
 
-function closePopup(openedPopup) {
-    openedPopup.classList.remove('popup_opened')
-}
+const validationConfig = {
+    formsSelector: '.popup__text',
+    inputSelector: '.popup__input',
+    submitButtonsSelector: '.popup__action',
+    inactiveButtonClass: 'input__button_disabled',
+    inputErrorClass: 'input__text_type-error',
+};
 
-function closeByEsc(evt) {
-    if (evt.key === "Escape") {
-      const openedPopup = document.querySelector('.popup_opened');
-      closePopup(openedPopup); 
-    }
-}
+const editProfileValidator = new FormValidator(validationConfig, editForm);
+const addCardValidator = new FormValidator(validationConfig, addCardForm);
 
+editProfileValidator.enableValidation()
+addCardValidator.enableValidation()
