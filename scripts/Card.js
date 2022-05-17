@@ -3,7 +3,7 @@ import {togglePopup} from './utils.js'
 
 export class Card {
     constructor(data, cardTemplateSelector) {
-        this._elementsTemplate = document.querySelector(cardTemplateSelector).content.querySelector('.elements__card');
+        this._elementsTemplate = document.querySelector('.elements__card');
         this._data = data;
     }
 
@@ -32,7 +32,7 @@ export class Card {
     
     createNewCard() {
         this._card = this._elementsTemplate.cloneNode(true);
-        console.log(this._card)
+
         this._card.querySelector(".elements__img").src = this._data.link;
         this._card.querySelector(".elements__description").textContent = this._data.name;
     
@@ -40,7 +40,6 @@ export class Card {
         this._imageButton = this._card.querySelector('.elements__img');
     
         this._setEventListeners()
-
         return this._card;
     };
-} 
+}
