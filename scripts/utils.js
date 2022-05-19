@@ -21,4 +21,3 @@ if ([modalWindow.classList.contains('popup_opened')]){
 }
 }
 
-

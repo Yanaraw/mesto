@@ -3,6 +3,7 @@ import {togglePopup} from './utils.js'
 import {FormValidator} from './FormValidator.js'
 import {Card} from './Card.js'
 
+
 /* эта часть кода относится к блоку редактирования информации о пользователе */
 const popupOpenButton = document.querySelector('.profile__edit');
 const popupCloseButton = document.querySelector('.profile-popup__close');
@@ -41,15 +42,11 @@ popupProfile.addEventListener('click', () => closePopupOnOverlayClick(event, pop
 editForm.addEventListener('submit', handleSaveButton);
 
 /* эта часть кода подгружает картинки */
-
 const elementsTemplate = document.querySelector(".elements-template").content.querySelector('.elements__card');
-console.log(elementsTemplate)
-let fff = document.querySelector('.elements__cards')
-console.log(fff)
-const listOfCards = document.querySelector('.elements__cards');
+const container = document.querySelector(".elements__cards")
 
 initialCards.forEach((element) => {
-    renderCard(element, fff); 
+    renderCard(element, container); 
 })
 
 const popupOpenImage = document.querySelector('.image-popup');
@@ -76,8 +73,9 @@ function createNewElement(event) {
         name: popupInputName.value,
         link: popupInputPic.value
     }
-    const newCard = createNewCard(cardN);
-    renderCard(newCard, listOfCards); 
+    
+
+    renderCard(cardN, container); 
 
     const button = document.querySelector('.elements-popup__action')
     button.setAttribute('disabled', '');
