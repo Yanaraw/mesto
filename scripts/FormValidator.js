@@ -40,9 +40,12 @@ export class FormValidator {
         })
     }
 
+
     enableValidation() {
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
+            this._button.setAttribute('disabled', '');
+            this._button.classList.add('input__button_disabled');
         });
         this._setEventListeners()
     };

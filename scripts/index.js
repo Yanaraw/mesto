@@ -1,5 +1,5 @@
 
-import {togglePopup} from './utils.js'
+import {open, close} from './utils.js'
 import {FormValidator} from './FormValidator.js'
 import {Card} from './Card.js'
 
@@ -17,7 +17,7 @@ const newName = document.getElementById('username');
 
 function closePopupOnOverlayClick(event, modalWindow) {
     if (event.currentTarget === event.target) {
-        togglePopup(modalWindow)
+        close(modalWindow)
     }
 }
 
@@ -26,36 +26,38 @@ function handleSaveButton(event) {
     about.textContent = newAbout.value;
     namee.textContent = newName.value;
     if (event.currentTarget === event.target) {
-        togglePopup(popupProfile)
+        close(popupProfile)
     }
 }
 
 function handleProfileForm () {
-    togglePopup(popupProfile)
+    open(popupProfile)
     newName.value= namee.textContent;
     newAbout.value=about.textContent;
 }
 
 popupOpenButton.addEventListener('click', handleProfileForm);
-popupCloseButton.addEventListener('click', () => togglePopup(popupProfile));
+popupCloseButton.addEventListener('click', () => close(popupProfile));
 popupProfile.addEventListener('click', () => closePopupOnOverlayClick(event, popupProfile));
 editForm.addEventListener('submit', handleSaveButton);
 
 /* эта часть кода подгружает картинки */
 const elementsTemplate = document.querySelector(".elements-template").content.querySelector('.elements__card');
 const container = document.querySelector(".elements__cards")
-
-initialCards.forEach((element) => {
-    renderCard(element, container); 
-})
-
-const popupOpenImage = document.querySelector('.image-popup');
+export const popupImage = document.querySelector('.popup__image')
+export const popupImageFigcaption = document.querySelector('.popup__img-figcaption')
+export const popupOpenImage = document.querySelector('.image-popup');
 const closeCrossImg = document.querySelector('.popup__img-popup-close');
 
-function renderCard(cardd, container) {
+initialCards.forEach((element) => {
+    container.prepend(renderCard(element));
+})
+
+function renderCard(cardd) {
     const card = new Card (cardd, '.elements-template')
     const cardElement = card.createNewCard()
-    container.prepend(cardElement);
+
+    return cardElement
 }
 /* эта часть кода относится к блоку добавления новых карточек */
 
@@ -68,29 +70,24 @@ const popupInputPic = document.querySelector('.popup__input-pic');
 
 function createNewElement(event) {
     event.preventDefault();
-    togglePopup(elementsPopup) 
+    close(elementsPopup) 
     const cardN = {
         name: popupInputName.value,
         link: popupInputPic.value
     }
+
+    container.prepend(renderCard(cardN));
     
-
-    renderCard(cardN, container); 
-
-    const button = document.querySelector('.elements-popup__action')
-    button.setAttribute('disabled', '');
-    button.classList.add('input__button_disabled');
-
     popupInputName.value = '';
     popupInputPic.value = '';
 };
 
-popupAddPicButton.addEventListener('click', () => togglePopup(elementsPopup));
-popupAddPicClose.addEventListener('click', () => togglePopup(elementsPopup));
+popupAddPicButton.addEventListener('click', () => open(elementsPopup));
+popupAddPicClose.addEventListener('click', () => close(elementsPopup));
 elementsPopup.addEventListener('click', () => closePopupOnOverlayClick(event, elementsPopup));
 addCardForm.addEventListener('submit', createNewElement);
 popupOpenImage.addEventListener('click', () => closePopupOnOverlayClick(event, popupOpenImage));
-closeCrossImg.addEventListener('click', () => togglePopup(popupOpenImage))
+closeCrossImg.addEventListener('click', () => close(popupOpenImage))
 
 const validationConfig = {
     formsSelector: '.popup__text',

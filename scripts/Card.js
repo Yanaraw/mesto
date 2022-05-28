@@ -1,4 +1,5 @@
-import {togglePopup} from './utils.js'
+import {open} from './utils.js'
+import {popupImage, popupImageFigcaption, popupOpenImage} from './index.js'
 
 
 export class Card {
@@ -16,10 +17,9 @@ export class Card {
     }
 
     _openImage = (e) => {
-        const popupOpenImage = document.querySelector('.image-popup');
-        togglePopup(popupOpenImage)
-        document.querySelector('.popup__image').src = e.target.src
-        document.querySelector('.popup__img-figcaption').textContent = this._data.name
+        popupImage.src = e.target.src
+        popupImageFigcaption.textContent = this._data.name
+        open(popupOpenImage)
     }
 
     _setEventListeners = () => {
@@ -31,11 +31,13 @@ export class Card {
     
     createNewCard() {
         this._card = this._elementsTemplate.cloneNode(true);
-        this._card.querySelector(".elements__img").src = this._data.link;
-        this._card.querySelector(".elements__description").textContent = this._data.name;
-    
         this._likeButton = this._card.querySelector('.elements__like');
         this._imageButton = this._card.querySelector('.elements__img');
+
+        this._imageButton.src = this._data.link;
+        this._card.querySelector(".elements__description").textContent = this._data.name;
+    
+    
     
         this._setEventListeners()
         return this._card;
