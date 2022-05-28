@@ -70,14 +70,13 @@ const popupInputPic = document.querySelector('.popup__input-pic');
 
 function createNewElement(event) {
     event.preventDefault();
-    close(elementsPopup) 
     const cardN = {
         name: popupInputName.value,
         link: popupInputPic.value
     }
 
     container.prepend(renderCard(cardN));
-    
+    close(elementsPopup) 
     popupInputName.value = '';
     popupInputPic.value = '';
 };
