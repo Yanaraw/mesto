@@ -1,7 +1,11 @@
 
-import {open, close} from './utils.js'
-import {FormValidator} from './FormValidator.js'
-import {Card} from './Card.js'
+import {open, close} from './utils.js';
+import {FormValidator} from './FormValidator.js';
+import {Card} from './Card.js';
+import '../pages/index.css';
+import "../src/index.html";
+import {initialCards} from './cards.js';
+
 
 
 /* эта часть кода относится к блоку редактирования информации о пользователе */

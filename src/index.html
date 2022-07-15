@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--  <link rel="stylesheet" type="text/css" href="./pages/index.css"> -->
+  <title>Место</title>
+</head>
+<body class="body">
+  <div class="page">
+    <header class="header">
+      <div class="header__logo" ></div>
+    </header>
+    <main class = "main">
+      <section class="profile">
+        <div class="profile__about">
+            <img class="profile__avatar" src="../images/image.png" alt="Аватар">
+                <div class="profile__info">
+                    <h1 class="profile__name" id="name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit" type="button"></button>
+                    <p class="profile__whoisit" id="about">Исследователь океана</p>
+                </div>
+             </div>
+          <button class="profile__add-pic-button" type="button"></button>
+      </section>
+      <section class="elements">
+        <ul class="elements__cards">
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2022 Mesto Russia</p>
+    </footer>
+  </div>
+  <section class="popup profile-popup">
+    <div class="popup__container">
+        <form class="popup__text profile-popup__text"  name="popup-name">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <div class="popup__input-container">
+            <input id = "username" minlength="2" maxlength="40" required type="text"  placeholder="Имя" class="popup__input">
+            <span id = "error-username" class="popup__error-message popup__error-message_visible"></span>
+          </div>
+          <div class="popup__input-container">
+            <input id="user_description" minlength="2" maxlength="200" required type="text" placeholder="О себе" class=" popup__input" >
+            <span id = "error-user_description" class="popup__error-message popup__error-message_visible"></span>
+          </div>
+          <button class="popup__action profile-popup__action" type="submit">Сохранить</button>
+        </form>
+      <button class="popup__close profile-popup__close" type="button"></button>
+    </div> 
+  </section>
+  
+  <section class="popup elements-popup">
+    <div class="popup__container">
+      <form class="popup__text elements-popup__text" name='popup-card' novalidate>
+        <h2 class="popup__title">Новое место</h2>
+        <div class="popup__input-container">
+          <input id="photo_name" type="text" minlength="2" maxlength="30" required class="popup__input popup__input-name" placeholder="Название">
+          <span id = "error-photo_name" class="popup__error-message popup__error-message_visible"></span>
+        </div>
+        <div class="popup__input-container">
+          <input id="photo_link" type="url" required class=" popup__input popup__input-pic" placeholder="Ссылка на картинку" >
+          <span id = "error-photo_link" class="popup__error-message popup__error-message_visible"></span>
+        </div>
+        <button class="popup__action elements-popup__action" type="submit">Создать</button>
+      </form>
+      <button class="popup__close elements-popup__close" type="button"></button>
+    </div>
+  </section>
+  <section class="popup image-popup">
+    <div class="popup__container-img">
+        <button class="popup__img-popup-close" type="button"></button>
+        <figure>
+          <img class="popup__image" src="../images/image.png" alt="Фото">
+          <figcaption class="popup__img-figcaption"></figcaption>
+        </figure>
+    </div>
+  </section>
+  <template class="elements-template">
+    <li class="elements__card">
+      <div class=elements__img-container>
+        <img class="elements__img" alt="Фото">
+      </div>
+      <button class="elements__delete-button"></button>
+      <div class="elements__about">
+        <p class="elements__description"></p>
+        <button class="elements__like" type="button"></button>  
+      </div>
+    </li>
+  </template>
+<!-- <script src="./scripts/cards.js"></script>
+<script type="module" src="./scripts/index.js" defer ></script> -->
+</body>
+</html>
